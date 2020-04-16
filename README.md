@@ -1,3 +1,7 @@
+### Update for Cleargrasp dataset
+
+Please use new models fixed with position and orientation offset, now the projection matches images after flip horizontally.
+
 ### Update
 
 Changed from YCB-Video Toolbox.
@@ -5,15 +9,13 @@ Changed from YCB-Video Toolbox.
 3 functions: evaluate_poses, plot_accuracy, show_pose_projections
 
 First, change global variables 'opt' in globals.m:
-change mode to cleargrasp, set image and metadata path, select result path to evaluate
+change mode to cleargrasp, set image, object model and metadata path, select result path to evaluate
 
-Run evaluate_poses to calculate errors in Average point-pair distance (ADD), Average closest point-pair distance for symmetry objects (ADD-S), translation and rotation errors for poses.
+1. Run evaluate_poses to calculate errors in Average point-pair distance (ADD), Average closest point-pair distance for symmetry objects (ADD-S), translation and rotation errors for poses.
 
-Run plot_accuracy to show as 2 by 2 plots of evaluation results
+2. Run plot_accuracy to show as 2 by 2 plots of evaluation results
 
-Run show_pose_projections to visualize 2D projection of result poses on rgb images (currently still not have results close to ground truth)
-
-test_render.m: demo of testing projection program, the Cleargrasp dataset seems to have errors in poses, still working on it.
+3. Run show_pose_projections to visualize 2D projection of result poses on rgb images (images are shown horizontally flipped)
 
 ### Introduction
 

@@ -1,4 +1,4 @@
-function evaluate_poses_keyframe
+function evaluate_poses
 
     opt = globals();
 
@@ -12,7 +12,9 @@ function evaluate_poses_keyframe
     % load model points
     num_objects = numel(object_names);
     models = cell(num_objects, 1);
-%     end
+    if ~exist('models', 'dir')
+        mkdir('models');
+    end
     for i = 1:num_objects
         matfilename = sprintf('models/%s.mat', object_names{i});
         if exist(matfilename, 'file')

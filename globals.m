@@ -6,13 +6,13 @@ function opt = globals()
         opt.classfile = strcat(opt.root, '/classes.txt');
         opt.num_classes = 5;
         opt.labels = {'Densefusion'};
-        %opt.model_path = strcat(opt.root, '/cleargrasp-3d-models');
+        opt.model_path = strcat(opt.root, '/cleargrasp-3d-models-fixed/');
 %         opt.result_path = strcat(opt.root, '/DenseFusion/experiments/eval_result/cleargrasp/Densefusion_wo_refine_result/');
-        opt.result_path = {strcat(opt.root, '/DenseFusion/experiments/eval_result/cleargrasp/Densefusion_wo_refine_result_all_instances/')};
+        opt.result_path = {strcat(opt.root, '/DenseFusion/experiments/eval_result/cleargrasp/Densefusion_wo_refine_result/')};
         opt.output_file = 'results_cleargrasp.mat';
         opt.output_plotpath = 'plots_cleargrasp';
         opt.output_imagepath = {'images_cleargrasp'};
-        opt.testlist_file = '/home/cxt/Documents/research/lf_perception/598-007-project/DenseFusion/datasets/cleargrasp/dataset_config/test_data_cup_list.txt';
+        opt.testlist_file = strcat(opt.root, '/DenseFusion/datasets/cleargrasp/dataset_config/test_data_cup_list.txt');
         opt.test_imagepath = strcat(opt.root, '/cleargrasp-testing-validation/synthetic-val/');
         opt.intrinsic_matrix_color = [1386.4, 0, 960; 0, 1386.4 540; 0, 0 ,1]; % for 1920*1080 image
 %         opt.intrinsic_matrix_color = [739.4, 0, 512; 0, 739.4 288; 0, 0 ,1]; % for 1024*576 image
@@ -31,7 +31,7 @@ function opt = globals()
         for i = 1: length(opt.labels)
             opt.output_imagepath{i} = strcat('images_toolset_', opt.labels{i});
         end
-        opt.testlist_file = '/home/cxt/Documents/research/affordance/tool_dataset/tool_parts/test_images.txt';
+        opt.testlist_file = strcat(opt.root, '/test_images.txt');
         opt.intrinsic_matrix_color = [536.5441342081624, 0, 324.1496087846382; 0, 537.6663041098749 224.2990274169881; 0, 0 ,1];
         assert(length(opt.labels) == length(opt.result_path));
     end

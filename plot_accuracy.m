@@ -1,4 +1,4 @@
-function plot_accuracy_keyframe
+function plot_accuracy
 
     opt = globals();
     
@@ -52,7 +52,7 @@ function plot_accuracy_keyframe
                 set(gca, 'FontSize', font_size)
                 index = find(results_cls_id(:, i) == k);
                 if isempty(index)
-                    if k ~= numel(classes)
+                    if j <= 2 && k ~= numel(classes)
                         lengs{i} = sprintf('%s(AUC:%.2f)(<2cm:%.2f)', opt.labels{i}, 0, 0);
                         continue;
                     else

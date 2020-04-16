@@ -7,7 +7,7 @@
 % intrinsic_matrix: camera intrinsics
 % rotation_translation_matrix: RT of the camera motion in 3D
 % vertmap: coordinates in the 3D model space of each pixel in the image
-function show_pose_annotations
+function show_pose_projections
 
     opt = globals();
 
@@ -56,7 +56,7 @@ function show_pose_annotations
                 tmp = split(test_list{k},'/');
                 folder = tmp{1}; imgind = tmp{2};
                 imfilename = sprintf('%s/%s/rgb-imgs/%s-rgb.jpg', opt.test_imagepath, folder, imgind);
-                I = imread(imfilename);
+                I = fliplr(imread(imfilename)); % after fixing object models, to pair with images still need to flip horizontally
             else
                 imfilename = test_list{k};
                 I = imread(imfilename);
@@ -64,8 +64,9 @@ function show_pose_annotations
             metafilename = sprintf('%s/%04d.mat', opt.result_path{i}, k-1);
             imsavename = split(imfilename,'/');
             imsavename = imsavename{end};
+            imsavename(end-2:end) = 'png';
             object = load(metafilename);
-
+            
 
             % copied from evaluate_poses_keyframe.m
             if opt.switch_cleargrasp0toolset1
@@ -80,11 +81,11 @@ function show_pose_annotations
                     RT(:, 4, j) = object.poses(j, 1:3);
                 end
 %                 object.cls_indexes = object.cls_indexes;
-                for t = 1: length(object.cls_indexes)
-                    if object.cls_indexes(t) > 4
-                        object.cls_indexes(t) = object.cls_indexes(t) + 1;
-                    end
-                end
+%                 for t = 1: length(object.cls_indexes)
+%                     if object.cls_indexes(t) > 4
+%                         object.cls_indexes(t) = object.cls_indexes(t) + 1;
+%                     end
+%                 end
                 
             else
                 % cleargrasp-densefusion format: gt saved in 3*4 matrix,
